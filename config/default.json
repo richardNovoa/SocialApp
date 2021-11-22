@@ -1,4 +1,6 @@
 {
     "mongoURI":"mongodb+srv://rich123:rich123@qroi-poc.kgx45.mongodb.net/test",
-    "jwtSecret":"mysecrettoken"
+    "jwtSecret":"mysecrettoken",
+    "githubClientId": "fe5a4f238df01e164619",
+    "githubSecret": "d37f86c8e48ed69fedb03eca93d6f246412ba541"
 }
