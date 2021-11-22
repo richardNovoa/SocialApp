@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://rich123:rich123@qroi-poc.kgx45.mongodb.net/test",
+    "jwtSecret":"mysecrettoken"
+}
