@@ -3,7 +3,7 @@ import React from 'react';
 export const Register = () => {
   return (
     <div>
-      <h1>Register</h1>
+      <h1 style={{ marginTop: 300 }}>Register</h1>
     </div>
   );
 };
