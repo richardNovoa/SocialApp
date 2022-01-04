@@ -1,4 +1,4 @@
-const Landing = () => {
+function Landing() {
   return (
     <section className='landing'>
       <div className='dark-overlay'>
@@ -20,6 +20,6 @@ const Landing = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Landing;
