@@ -1,20 +1,20 @@
 const Navbar = () => {
   return (
-    <nav className='navbar bg-dark'>
+    <nav className="navbar bg-dark">
       <h1>
-        <a href='index.html'>
-          <i className='fas fa-code'></i>DevConnector
+        <a href="/">
+          <i className="fas fa-code"></i>DevConnector
         </a>
       </h1>
       <ul>
         <li>
-          <a href='profiles.html'>Developers</a>
+          <a href="profiles">Developers</a>
         </li>
         <li>
-          <a href='register.html'>Register</a>
+          <a href="register">Register</a>
         </li>
         <li>
-          <a href='login.html'>Login</a>
+          <a href="login">Login</a>
         </li>
       </ul>
     </nav>
