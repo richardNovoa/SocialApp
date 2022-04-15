@@ -26,6 +26,7 @@ export const Register = () => {
 				email,
 				password,
 			};
+
 			try {
 				const config = {
 					headers: {
@@ -33,7 +34,11 @@ export const Register = () => {
 					},
 				};
 				const body = JSON.stringify(newUser);
-				const res = axios.post('/api/users', body, config);
+				const res = await axios.post(
+					'http://localhost:5001/api/users',
+					body,
+					config,
+				);
 				console.log(res.data);
 			} catch (err) {
 				console.error(err.response.data);
