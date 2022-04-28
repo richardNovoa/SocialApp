@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-export const Register = ({ setAlert }) => {
+export const Register = ({ setAlert, register }) => {
 	//use state hook
 	const [formData, setFormData] = useState({
 		name: '',
@@ -24,28 +24,7 @@ export const Register = ({ setAlert }) => {
 		if (password !== password2) {
 			setAlert('Passwords do not match', 'danger');
 		} else {
-			const newUser = {
-				name,
-				email,
-				password,
-			};
-
-			try {
-				const config = {
-					headers: {
-						'Content-Type': 'application/json',
-					},
-				};
-				const body = JSON.stringify(newUser);
-				const res = await axios.post(
-					'http://localhost:5001/api/users',
-					body,
-					config,
-				);
-				console.log(res.data);
-			} catch (err) {
-				console.error(err.response.data);
-			}
+			register({ name, email, password });
 		}
 	};
 
@@ -64,7 +43,6 @@ export const Register = ({ setAlert }) => {
 							name='name'
 							value={name}
 							onChange={(e) => onChange(e)}
-							required
 						/>
 					</div>
 					<div className='form-group'>
@@ -85,7 +63,6 @@ export const Register = ({ setAlert }) => {
 							type='password'
 							placeholder='Password'
 							name='password'
-							minLength='6'
 							value={password}
 							onChange={(e) => onChange(e)}
 						/>
@@ -95,7 +72,6 @@ export const Register = ({ setAlert }) => {
 							type='password'
 							placeholder='Confirm Password'
 							name='password2'
-							minLength='6'
 							value={password2}
 							onChange={(e) => onChange(e)}
 						/>
@@ -111,6 +87,7 @@ export const Register = ({ setAlert }) => {
 };
 Register.propTypes = {
 	setAlert: PropTypes.func.isRequired,
+	register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
