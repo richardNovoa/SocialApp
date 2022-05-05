@@ -17,12 +17,12 @@ export default function App() {
 			<Router>
 				<Fragment>
 					<Navbar />
-					<Alert />
 					<Routes>
 						<Route path='/' element={<Landing />} />
 						<Route path='/register' element={<Register />} />
 						<Route path='/login' element={<Login />} />
 					</Routes>
+					<Alert />
 				</Fragment>
 			</Router>
 		</Provider>

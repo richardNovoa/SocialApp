@@ -14,12 +14,18 @@ export const register =
 		const body = JSON.stringify({ name, email, password });
 
 		try {
-			const res = await axios.post('/api/users', body, config);
+			const res = await axios.post(
+				'http://localhost:5001/api/users',
+				body,
+				config,
+			);
 			dispatch({
 				type: REGISTER_SUCCESS,
 				payload: res.data,
 			});
-		} catch (err) {
+
+			/* ERROR IS OCCURRING HERE!!!!
+		catch (err) {
 			const errors = err.response;
 
 			if (errors) {
@@ -29,4 +35,6 @@ export const register =
 				type: REGISTER_FAIL,
 			});
 		}
+		*/
+		} catch (err) {}
 	};
