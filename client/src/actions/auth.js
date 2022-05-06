@@ -24,11 +24,10 @@ export const register =
 				payload: res.data,
 			});
 		} catch (err) {
-			const errors = err.response;
-
-			if (err) {
-				console.log(err.msg);
-				//errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+			const errors = err.response.data.errors;
+			console.log(errors);
+			if (errors) {
+				errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')));
 				dispatch({
 					type: REGISTER_FAIL,
 				});
