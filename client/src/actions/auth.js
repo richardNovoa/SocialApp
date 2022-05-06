@@ -23,18 +23,15 @@ export const register =
 				type: REGISTER_SUCCESS,
 				payload: res.data,
 			});
-
-			/* ERROR IS OCCURRING HERE!!!!
-		catch (err) {
+		} catch (err) {
 			const errors = err.response;
 
-			if (errors) {
-				errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+			if (err) {
+				console.log(err.msg);
+				//errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+				dispatch({
+					type: REGISTER_FAIL,
+				});
 			}
-			dispatch({
-				type: REGISTER_FAIL,
-			});
 		}
-		*/
-		} catch (err) {}
 	};
