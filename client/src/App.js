@@ -22,7 +22,9 @@ export default function App() {
 						<Route path='/register' element={<Register />} />
 						<Route path='/login' element={<Login />} />
 					</Routes>
-					<Alert />
+					<div className='container'>
+						<Alert />
+					</div>
 				</Fragment>
 			</Router>
 		</Provider>
