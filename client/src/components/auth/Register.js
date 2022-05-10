@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import Alert from '../layout/Alert';
 
 export const Register = ({ setAlert, register }) => {
 	//use state hook
@@ -31,6 +32,9 @@ export const Register = ({ setAlert, register }) => {
 	return (
 		<Fragment>
 			<section className='container'>
+				<div className='container'>
+					<Alert />
+				</div>
 				<h1 className='large text-primary'>Sign Up</h1>
 				<p className='lead'>
 					<i className='fas fa-user'></i> Create Your Account
