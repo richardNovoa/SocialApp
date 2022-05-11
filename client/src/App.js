@@ -10,12 +10,12 @@ import { Provider } from 'react-redux';
 import store from './store';
 import './App.css';
 
-if (localStorage.token) {
-	setAuthToken(localStorage.token);
-}
 //Redux
 const App = () => {
 	useEffect(() => {
+		if (localStorage.token) {
+			setAuthToken(localStorage.token);
+		}
 		store.dispatch(loadUser());
 	}, []);
 

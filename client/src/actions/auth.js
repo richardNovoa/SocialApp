@@ -14,7 +14,7 @@ export const loadUser = () => async (dispatch) => {
 		setAuthToken(localStorage.token);
 	}
 	try {
-		const res = await axios.get('/api/auth');
+		const res = await axios.get('http://localhost:5001/api/auth');
 		dispatch({
 			type: USER_LOADED,
 			payload: res.data,
@@ -47,6 +47,8 @@ export const register =
 				type: REGISTER_SUCCESS,
 				payload: res.data,
 			});
+			window.localStorage.setItem('token', res.data.token);
+			dispatch(loadUser());
 		} catch (err) {
 			const errors = err.response.data.errors;
 			console.log(errors);
