@@ -22,6 +22,7 @@ export const loadUser = () => async (dispatch) => {
 			payload: res.data,
 		});
 	} catch (err) {
+		window.localStorage.removeItem('token');
 		dispatch({
 			type: AUTH_ERROR,
 		});
@@ -60,6 +61,7 @@ export const register =
 					type: REGISTER_FAIL,
 				});
 			}
+			window.localStorage.removeItem('token');
 		}
 	};
 
@@ -72,7 +74,6 @@ export const login =
 				'Content-Type': 'application/json',
 			},
 		};
-		console.log(email, password);
 		const body = JSON.stringify({ email, password });
 
 		try {
@@ -96,5 +97,6 @@ export const login =
 					type: LOGIN_FAIL,
 				});
 			}
+			window.localStorage.removeItem('token');
 		}
 	};
