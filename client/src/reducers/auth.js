@@ -3,6 +3,8 @@ import {
 	REGISTER_FAIL,
 	USER_LOADED,
 	AUTH_ERROR,
+	LOGIN_FAIL,
+	LOGIN_SUCCESS,
 } from '../actions/types';
 
 //init state of the component
@@ -25,6 +27,7 @@ export default function (state = initialState, action) {
 					user: payload,
 				};
 			case REGISTER_SUCCESS:
+			case LOGIN_SUCCESS:
 				return {
 					...state,
 					...payload,
@@ -33,6 +36,7 @@ export default function (state = initialState, action) {
 				};
 
 			case REGISTER_FAIL:
+			case LOGIN_FAIL:
 			case AUTH_ERROR:
 				localStorage.removeItem('token');
 				return {
