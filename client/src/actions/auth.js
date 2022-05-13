@@ -22,7 +22,6 @@ export const loadUser = () => async (dispatch) => {
 			payload: res.data,
 		});
 	} catch (err) {
-		window.localStorage.removeItem('token');
 		dispatch({
 			type: AUTH_ERROR,
 		});
@@ -50,7 +49,7 @@ export const register =
 				type: REGISTER_SUCCESS,
 				payload: res.data,
 			});
-			window.localStorage.setItem('token', res.data.token);
+
 			dispatch(loadUser());
 		} catch (err) {
 			const errors = err.response.data.errors;
@@ -61,7 +60,6 @@ export const register =
 					type: REGISTER_FAIL,
 				});
 			}
-			window.localStorage.removeItem('token');
 		}
 	};
 
@@ -97,6 +95,5 @@ export const login =
 					type: LOGIN_FAIL,
 				});
 			}
-			window.localStorage.removeItem('token');
 		}
 	};
