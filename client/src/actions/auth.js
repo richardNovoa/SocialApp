@@ -6,6 +6,7 @@ import {
 	AUTH_ERROR,
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
+	LOGOUT,
 } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
@@ -84,7 +85,6 @@ export const login =
 				type: LOGIN_SUCCESS,
 				payload: res.data,
 			});
-			window.localStorage.setItem('token', res.data.token);
 			dispatch(loadUser());
 		} catch (err) {
 			const errors = err.response.data.errors;
@@ -97,3 +97,8 @@ export const login =
 			}
 		}
 	};
+
+//Logout / Clear Profile
+export const logout = () => (dispatch) => {
+	dispatch({ type: LOGOUT });
+};
