@@ -6,9 +6,11 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from './store';
 import './App.css';
+import Dashboard from './components/dashboard/Dashboard';
 
 //Redux
 const App = () => {
@@ -28,6 +30,7 @@ const App = () => {
 						<Route path='/' element={<Landing />} />
 						<Route path='/register' element={<Register />} />
 						<Route path='/login' element={<Login />} />
+						<PrivateRoute path='/dashboard' element={<Dashboard />} />
 					</Routes>
 				</Fragment>
 			</Router>
