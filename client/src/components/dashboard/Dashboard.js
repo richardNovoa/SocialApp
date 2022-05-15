@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Dashboard = (props) => {
-	return <section className='container'>Dashboard</section>;
+	return (
+		<div className='container'>
+			<div>Dashboard</div>
+		</div>
+	);
 };
 
 Dashboard.propTypes = {};
