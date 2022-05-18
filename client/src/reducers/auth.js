@@ -44,7 +44,7 @@ function authReducer(state = initialState, action) {
 			return {
 				...state,
 				token: null,
-				isAuthenticated: false,
+				isAuthenticated: null,
 				loading: false,
 			};
 

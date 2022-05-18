@@ -100,7 +100,7 @@ export const login =
 	};
 
 //Logout / Clear Profile
-export const logout = () => (dispatch) => {
+export const logout = () => async (dispatch) => {
 	dispatch({ type: CLEAR_PROFILE });
 	dispatch({ type: LOGOUT });
 };
