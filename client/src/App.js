@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Dashboard from './components/dashboard/Dashboard';
 import './App.css';
+import EditProfile from './components/profile-forms/EditProfile';
 
 //Redux
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
 						<Route path='/' element={<PrivateRoute />}>
 							<Route path='dashboard' element={<Dashboard />} />
 							<Route path='create-profile' element={<CreateProfile />} />
+							<Route path='edit-profile' element={<EditProfile />} />
 						</Route>
 					</Routes>
 				</Fragment>
