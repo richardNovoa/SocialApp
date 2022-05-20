@@ -49,7 +49,7 @@ const CreateProfile = ({
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		createProfile(formData, navigate, profile ? true : false);
+		createProfile(formData, navigate, false);
 	};
 
 	return (
