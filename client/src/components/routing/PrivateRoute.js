@@ -6,7 +6,7 @@ import { Navigate, Outlet } from 'react-router';
 //define PrivateRoute component and pass react-props
 const PrivateRoute = ({ auth: { isAuthenticated, loading } }) => {
 	//show Dashboard or redirect to Login
-	return !loading && isAuthenticated ? <Outlet /> : <Navigate to='login' />;
+	return !loading && isAuthenticated ? <Outlet /> : <Navigate to='/login' />;
 };
 //define react-proptype
 PrivateRoute.propTypes = {
