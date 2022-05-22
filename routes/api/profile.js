@@ -146,16 +146,8 @@ router.get('/user/:user_id', async (req, res) => {
 //@access   Private
 router.delete('/', auth, async (req, res) => {
 	try {
-		//@todo - remove users posts
-
-		//collect array of posts
-		//map as post_id
-		//loop findoneandremove by post_id,
-
-		//collect array of posts with comments by user
-		//map as post_id
-		//looping foreach call post, comment removeIndex by user, splice post, save post
-
+		//remove users posts
+		await Post.deleteMany({ user: req.user.id });
 		//remove profile
 		await Profile.findOneAndRemove({ user: req.user.id });
 		//remove user
