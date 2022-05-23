@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
@@ -60,7 +60,21 @@ const EditProfile = ({
 			youtube: loading || !profile.youtube ? '' : profile.youtube,
 			instagram: loading || !profile.instagram ? '' : profile.instagram,
 		});
-	}, [loading, getCurrentProfile]);
+	}, [
+		loading,
+		getCurrentProfile,
+		profile.company,
+		profile.website,
+		profile.location,
+		profile.status,
+		profile.skills,
+		profile.githubusername,
+		profile.bio,
+		profile.twitter,
+		profile.linkedin,
+		profile.youtube,
+		profile.instagram,
+	]);
 
 	const onChange = (e) =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
