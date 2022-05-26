@@ -181,7 +181,6 @@ export const deleteAccount = () => async (dispatch) => {
 
 //Get all profiles
 export const getProfiles = () => async (dispatch) => {
-	dispatch({ type: CLEAR_PROFILE });
 	try {
 		const res = await axios.get('http://localhost:5001/api/profile');
 		dispatch({
@@ -197,10 +196,10 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 //Get profile by ID
-export const getProfileById = (userId) => async (dispatch) => {
+export const getProfileById = (user) => async (dispatch) => {
 	try {
 		const res = await axios.get(
-			`http://localhost:5001/api/profile/user/${userId}`,
+			`http://localhost:5001/api/profile/user/${user.id}`,
 		);
 
 		dispatch({
@@ -210,7 +209,10 @@ export const getProfileById = (userId) => async (dispatch) => {
 	} catch (err) {
 		dispatch({
 			type: PROFILE_ERROR,
-			payload: { msg: err.response.statusText, status: err.response.status },
+			payload: {
+				msg: err.response.statusText,
+				status: err.response.status,
+			},
 		});
 	}
 };

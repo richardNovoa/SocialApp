@@ -16,6 +16,7 @@ import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 
 //Redux
 const App = () => {
@@ -36,6 +37,9 @@ const App = () => {
 						<Route path='/login' element={<Login />} />
 						<Route path='/register' element={<Register />} />
 						<Route path='/profiles' element={<Profiles />} />
+
+						<Route path='/profile/:id' element={<Profile />} />
+
 						<Route path='/' element={<PrivateRoute />}>
 							<Route path='dashboard' element={<Dashboard />} />
 							<Route path='create-profile' element={<CreateProfile />} />
