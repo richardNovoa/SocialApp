@@ -5,6 +5,8 @@ import Spinner from '../layout/Navbar';
 import { getProfileById } from '../../actions/profile';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import ProfileTop from './ProfileTop';
+import ProfileAbout from './ProfileAbout';
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 	const id = useParams();
@@ -29,6 +31,10 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 									Edit Profile
 								</Link>
 							)}
+						<div className='profile-grid my-1'>
+							<ProfileTop profile={profile} />
+							<ProfileAbout profile={profile} />
+						</div>
 					</section>
 				</Fragment>
 			)}
