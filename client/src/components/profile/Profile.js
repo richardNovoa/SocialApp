@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
+import Moment from 'react-moment';
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 	const id = useParams();
@@ -34,6 +35,36 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 						<div className='profile-grid my-1'>
 							<ProfileTop profile={profile} />
 							<ProfileAbout profile={profile} />
+							<div className='profile-exp bg-white p-2'>
+								<h2 className='text-primary'>Experience</h2>
+								{profile.experience.length > 0 ? (
+									<Fragment>
+										{profile.experience.map((exp, index) => (
+											<div key={index}>
+												<h3 className='text-dark'>{exp.company}</h3>
+												<p>
+													<Moment format='YYYY/MM/DD'>{exp.from}</Moment> -{' '}
+													{exp.to === null ? (
+														' Now'
+													) : (
+														<Moment format='YYYY/MM/DD'>{exp.to}</Moment>
+													)}
+												</p>
+												<p>
+													<strong>Position: </strong>
+													{exp.title}
+												</p>
+												<p>
+													<strong>Description: </strong>
+													{exp.description}
+												</p>
+											</div>
+										))}
+									</Fragment>
+								) : (
+									<p>No experience credentials</p>
+								)}
+							</div>
 						</div>
 					</section>
 				</Fragment>
