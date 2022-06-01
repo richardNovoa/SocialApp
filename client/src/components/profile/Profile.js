@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import Moment from 'react-moment';
+import ProfileExperience from './ProfileExperience';
+import ProfileEducation from './ProfileEducation';
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 	const id = useParams();
@@ -40,29 +42,29 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 								{profile.experience.length > 0 ? (
 									<Fragment>
 										{profile.experience.map((exp, index) => (
-											<div key={index}>
-												<h3 className='text-dark'>{exp.company}</h3>
-												<p>
-													<Moment format='YYYY/MM/DD'>{exp.from}</Moment> -{' '}
-													{exp.to === null ? (
-														' Now'
-													) : (
-														<Moment format='YYYY/MM/DD'>{exp.to}</Moment>
-													)}
-												</p>
-												<p>
-													<strong>Position: </strong>
-													{exp.title}
-												</p>
-												<p>
-													<strong>Description: </strong>
-													{exp.description}
-												</p>
-											</div>
+											<ProfileExperience
+												key={experience._id}
+												experience={exp}
+											/>
 										))}
 									</Fragment>
 								) : (
 									<p>No experience credentials</p>
+								)}
+							</div>
+							<div className='profile-edu bg-white p-2'>
+								<h2 className='text-primary'>Education</h2>
+								{profile.education.length > 0 ? (
+									<Fragment>
+										{profile.education.map((education, index) => (
+											<ProfileEducation
+												key={education._id}
+												education={education}
+											/>
+										))}
+									</Fragment>
+								) : (
+									<p>No Education credentials</p>
 								)}
 							</div>
 						</div>
