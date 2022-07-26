@@ -1,11 +1,14 @@
 import { GET_POSTS, POST_ERROR } from '../actions/types';
 
+//initialState
 const initialState = {
 	posts: [],
 	post: null,
 	loading: true,
 	error: {},
 };
+
+//post reducer functions
 
 export default function (state = initialState, action) {
 	const { type, payload } = action;
@@ -23,5 +26,7 @@ export default function (state = initialState, action) {
 				error: payload,
 				loading: false,
 			};
+		default:
+			return state;
 	}
 }
