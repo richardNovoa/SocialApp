@@ -47,7 +47,7 @@ const App = () => {
 							<Route path='edit-profile' element={<EditProfile />} />
 							<Route path='add-experience' element={<AddExperience />} />
 							<Route path='add-education' element={<AddEducation />} />
-							<Route path='/posts' element={<Posts />} />
+							<Route path='posts' element={<Posts />} />
 						</Route>
 					</Routes>
 				</Fragment>
