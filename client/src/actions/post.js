@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { GET_POSTS, POST_ERROR, UPDATE_LIKES } from './types';
+import { DELETE_POST, GET_POSTS, POST_ERROR, UPDATE_LIKES } from './types';
 import setAuthToken from '../utils/setAuthToken';
+import { setAlert } from './alert';
 
 //Get Posts
 
@@ -65,3 +66,24 @@ export const removeLike = (id) => async (dispatch) => {
 		});
 	}
 };
+
+// Delete post
+
+export const deletePost = (id) => async(dispatch) => {
+	if (localStorage.token){
+		setAuthToken(localStorage.token);
+	}
+	try {
+		const res = await axios.delete(`http://localhost:5001/api/posts/${id}`)
+		dispatch({
+			type: DELETE_POST,
+			payload: id
+		});
+		dispatch(setAlert('Post Removed', 'success'))
+	} catch (err) {
+		dispatch({
+			type: POST_ERROR,
+			payload: {msg: err.response.statusText, status: err.response.status}
+		})
+	}
+}
