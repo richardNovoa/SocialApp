@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DELETE_POST, GET_POSTS, POST_ERROR, UPDATE_LIKES } from './types';
+import { ADD_POST, DELETE_POST, GET_POSTS, POST_ERROR, UPDATE_LIKES } from './types';
 import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alert';
 
@@ -80,6 +80,32 @@ export const deletePost = (id) => async(dispatch) => {
 			payload: id
 		});
 		dispatch(setAlert('Post Removed', 'success'))
+	} catch (err) {
+		dispatch({
+			type: POST_ERROR,
+			payload: {msg: err.response.statusText, status: err.response.status}
+		})
+	}
+}
+
+// Add post
+
+export const addPost = FormData => async(dispatch) => {
+	if (localStorage.token){
+		setAuthToken(localStorage.token);
+	}
+	const config = {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}
+	try {
+		const res = await axios.post('http://localhost:5001/api/posts/', FormData, config)
+		dispatch({
+			type: ADD_POST,
+			payload: res.data
+		});
+
 	} catch (err) {
 		dispatch({
 			type: POST_ERROR,
