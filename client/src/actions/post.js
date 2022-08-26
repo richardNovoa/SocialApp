@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { ADD_POST, DELETE_POST, GET_POSTS, POST_ERROR, UPDATE_LIKES } from './types';
+import {
+	ADD_POST,
+	DELETE_POST,
+	GET_POSTS,
+	POST_ERROR,
+	UPDATE_LIKES,
+	GET_POST,
+} from './types';
 import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alert';
 
@@ -11,13 +18,12 @@ export const getPosts = () => async (dispatch) => {
 	}
 	try {
 		const res = await axios.get('http://localhost:5001/api/posts');
-		console.log('success');
+
 		dispatch({
 			type: GET_POSTS,
 			payload: res.data,
 		});
 	} catch (err) {
-		console.log('error');
 		dispatch({
 			type: POST_ERROR,
 			payload: { msg: err.response.statusText, status: err.response.status },
@@ -69,47 +75,71 @@ export const removeLike = (id) => async (dispatch) => {
 
 // Delete post
 
-export const deletePost = (id) => async(dispatch) => {
-	if (localStorage.token){
+export const deletePost = (id) => async (dispatch) => {
+	if (localStorage.token) {
 		setAuthToken(localStorage.token);
 	}
 	try {
-		const res = await axios.delete(`http://localhost:5001/api/posts/${id}`)
+		const res = await axios.delete(`http://localhost:5001/api/posts/${id}`);
 		dispatch({
 			type: DELETE_POST,
-			payload: id
+			payload: id,
 		});
-		dispatch(setAlert('Post Removed', 'success'))
+		dispatch(setAlert('Post Removed', 'success'));
 	} catch (err) {
 		dispatch({
 			type: POST_ERROR,
-			payload: {msg: err.response.statusText, status: err.response.status}
-		})
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
 	}
-}
+};
 
 // Add post
 
-export const addPost = FormData => async(dispatch) => {
-	if (localStorage.token){
+export const addPost = (FormData) => async (dispatch) => {
+	if (localStorage.token) {
 		setAuthToken(localStorage.token);
 	}
 	const config = {
 		headers: {
-			'Content-Type': 'application/json'
-		}
-	}
+			'Content-Type': 'application/json',
+		},
+	};
 	try {
-		const res = await axios.post('http://localhost:5001/api/posts/', FormData, config)
+		const res = await axios.post(
+			'http://localhost:5001/api/posts/',
+			FormData,
+			config,
+		);
 		dispatch({
 			type: ADD_POST,
-			payload: res.data
+			payload: res.data,
 		});
-
 	} catch (err) {
 		dispatch({
 			type: POST_ERROR,
-			payload: {msg: err.response.statusText, status: err.response.status}
-		})
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
 	}
-}
+};
+
+//Get Post
+
+export const getPost = (id) => async (dispatch) => {
+	if (localStorage.token) {
+		setAuthToken(localStorage.token);
+	}
+	try {
+		const res = await axios.get(`http://localhost:5001/api/posts/${id}`);
+
+		dispatch({
+			type: GET_POST,
+			payload: res.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: POST_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
+	}
+};
