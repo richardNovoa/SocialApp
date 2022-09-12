@@ -6,6 +6,8 @@ import {
 	POST_ERROR,
 	UPDATE_LIKES,
 	GET_POST,
+	ADD_COMMENT,
+	REMOVE_COMMENT,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alert';
@@ -136,6 +138,60 @@ export const getPost = (id) => async (dispatch) => {
 			type: GET_POST,
 			payload: res.data,
 		});
+	} catch (err) {
+		dispatch({
+			type: POST_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
+	}
+};
+
+//Add a comment
+
+export const addComment = (postId, FormData) => async (dispatch) => {
+	if (localStorage.token) {
+		setAuthToken(localStorage.token);
+	}
+	const config = {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	};
+	try {
+		const res = await axios.post(
+			`http://localhost:5001/api/posts/comment/${postId}`,
+			FormData,
+			config,
+		);
+		dispatch({
+			type: ADD_COMMENT,
+			payload: res.data,
+		});
+		dispatch(setAlert('Comment Added', 'success'));
+	} catch (err) {
+		dispatch({
+			type: POST_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
+	}
+};
+
+//Delete a comment
+
+export const deleteComment = (commentId, postId) => async (dispatch) => {
+	if (localStorage.token) {
+		setAuthToken(localStorage.token);
+	}
+
+	try {
+		const res = await axios.delete(
+			`http://localhost:5001/api/posts/comment/${postId}/${commentId}`,
+		);
+		dispatch({
+			type: REMOVE_COMMENT,
+			payload: res.data,
+		});
+		dispatch(setAlert('Comment Added', 'success'));
 	} catch (err) {
 		dispatch({
 			type: POST_ERROR,

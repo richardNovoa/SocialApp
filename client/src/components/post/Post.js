@@ -6,6 +6,7 @@ import { getPost } from '../../actions/post';
 import { useParams } from 'react-router';
 import PostItem from '../posts/PostItem';
 import { Link } from 'react-router-dom';
+import CommentForm from './CommentForm';
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
 	const { id } = useParams();
@@ -22,6 +23,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
 					Back To Posts
 				</Link>
 				<PostItem key={post._id} post={post} showActions={false} />
+				<CommentForm postId={post._id} />
 			</div>
 		</Fragment>
 	);
